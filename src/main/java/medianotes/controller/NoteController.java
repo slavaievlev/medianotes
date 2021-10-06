@@ -1,5 +1,6 @@
 package medianotes.controller;
 
+import medianotes.annotation.Loggable;
 import medianotes.dto.NoteCreateDto;
 import medianotes.dto.NoteDto;
 import medianotes.dto.NoteEditDto;
@@ -24,6 +25,7 @@ public class NoteController {
         this.noteService = noteService;
     }
 
+    @Loggable
     @GetMapping
     public List<NoteDto> getAllNotes() {
         return noteService.getAllNotes();
@@ -34,9 +36,8 @@ public class NoteController {
         return noteService.createNote(noteCreateDto);
     }
 
-    @PutMapping("/v1/test/{id}/hdawho")
-    public NoteDto editNote(@RequestBody NoteEditDto noteEditDto,
-                            @PathVariable("id") Integer noteId) {
+    @PutMapping("/{id}")
+    public NoteDto editNote(@PathVariable("id") Integer noteId, @RequestBody NoteEditDto noteEditDto) {
         return noteService.editNote(noteId, noteEditDto);
     }
 }
