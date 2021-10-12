@@ -10,7 +10,10 @@ import medianotes.service.NoteService;
 import medianotes.service.context.UserContext;
 import medianotes.service.factory.NoteFactory;
 import medianotes.service.mapper.NoteMapper;
+import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -42,6 +45,8 @@ public class JpaNoteService implements NoteService {
         return noteMapper.mapNoteToNoteDto(notes);
     }
 
+    @Retryable(IllegalArgumentException.class)
+    @Transactional
     @Override
     public NoteDto createNote(NoteCreateDto noteCreateDto) {
         String email = userContext.getEmail();
@@ -55,7 +60,9 @@ public class JpaNoteService implements NoteService {
 
         note = noteRepository.saveAndFlush(note);
 
-        return noteMapper.mapNoteToNoteDto(note);
+        throw new UnsupportedOperationException(":)");
+
+//        return noteMapper.mapNoteToNoteDto(note);
     }
 
     @Override
