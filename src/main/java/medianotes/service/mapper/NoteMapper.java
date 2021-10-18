@@ -1,6 +1,6 @@
 package medianotes.service.mapper;
 
-import medianotes.dto.NoteDto;
+import medianotes.dto.note.NoteDto;
 import medianotes.entity.Note;
 import org.springframework.stereotype.Component;
 

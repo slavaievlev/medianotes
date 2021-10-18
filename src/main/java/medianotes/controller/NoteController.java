@@ -1,9 +1,9 @@
 package medianotes.controller;
 
 import medianotes.annotation.Loggable;
-import medianotes.dto.NoteCreateDto;
-import medianotes.dto.NoteDto;
-import medianotes.dto.NoteEditDto;
+import medianotes.dto.note.NoteCreateDto;
+import medianotes.dto.note.NoteDto;
+import medianotes.dto.note.NoteEditDto;
 import medianotes.service.NoteService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

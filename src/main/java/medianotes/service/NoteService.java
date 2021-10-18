@@ -1,8 +1,8 @@
 package medianotes.service;
 
-import medianotes.dto.NoteCreateDto;
-import medianotes.dto.NoteDto;
-import medianotes.dto.NoteEditDto;
+import medianotes.dto.note.NoteCreateDto;
+import medianotes.dto.note.NoteDto;
+import medianotes.dto.note.NoteEditDto;
 
 import java.util.List;
 

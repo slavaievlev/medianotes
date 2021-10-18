@@ -1,4 +1,4 @@
-package medianotes.dto;
+package medianotes.dto.note;
 
 import lombok.Getter;
 

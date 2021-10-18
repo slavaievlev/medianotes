@@ -1,8 +1,8 @@
 package medianotes.service.impl;
 
-import medianotes.dto.NoteCreateDto;
-import medianotes.dto.NoteDto;
-import medianotes.dto.NoteEditDto;
+import medianotes.dto.note.NoteCreateDto;
+import medianotes.dto.note.NoteDto;
+import medianotes.dto.note.NoteEditDto;
 import medianotes.entity.Note;
 import medianotes.repository.NoteRepository;
 import medianotes.repository.UserRepository;
@@ -12,7 +12,6 @@ import medianotes.service.factory.NoteFactory;
 import medianotes.service.mapper.NoteMapper;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
