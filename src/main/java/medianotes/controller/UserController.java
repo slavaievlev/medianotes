@@ -3,6 +3,7 @@ package medianotes.controller;
 import medianotes.dto.user.UserWithRolesDto;
 import medianotes.dto.user.filter.UserFilterDto;
 import medianotes.service.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ public class UserController {
     }
 
 
+    @PreAuthorize("hasRole('admin')")
     @PostMapping("/{email}/roles")
     public void editRoles(@PathVariable String email,
                           @RequestBody Collection<String> newRoleCodes) {
@@ -37,6 +39,7 @@ public class UserController {
         return userService.getUsers();
     }
 
+    @PreAuthorize("hasRole('admin')")
     @PostMapping
     public List<UserWithRolesDto> getUsers(@RequestBody Collection<UserFilterDto> filters) {
         return userService.getUsers(filters);

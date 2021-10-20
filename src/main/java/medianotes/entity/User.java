@@ -40,6 +40,8 @@ public class User {
 
     private String email;
 
+    private String password;
+
     @CreationTimestamp
     private Instant createdAt;
 

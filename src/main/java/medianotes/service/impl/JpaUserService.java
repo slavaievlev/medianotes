@@ -1,5 +1,6 @@
 package medianotes.service.impl;
 
+import medianotes.dto.authentication.UserAuthenticationInfoDto;
 import medianotes.dto.user.UserWithRolesDto;
 import medianotes.dto.user.filter.UserFilterDto;
 import medianotes.entity.Role;
@@ -14,7 +15,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class JpaUserService implements UserService {
@@ -58,5 +61,22 @@ public class JpaUserService implements UserService {
     public List<UserWithRolesDto> getUsers(Collection<UserFilterDto> filters) {
         List<User> users = userRepository.findAll(UserSpecification.findUsers(filters));
         return userMapper.mapUserToUserWithRolesDto(users);
+    }
+
+    @Override
+    public Optional<UserAuthenticationInfoDto> findAuthenticationInfo(String email) {
+        Optional<User> userOpt = userRepository.findOneWithRolesByEmail(email);
+
+        if (userOpt.isPresent()) {
+            User user = userOpt.get();
+            return Optional.of(new UserAuthenticationInfoDto(
+                    user.getId(),
+                    user.getEmail(),
+                    user.getPassword(),
+                    user.getRoles().stream().map(Role::getCode).collect(Collectors.toSet())
+            ));
+        } else {
+            return Optional.empty();
+        }
     }
 }
